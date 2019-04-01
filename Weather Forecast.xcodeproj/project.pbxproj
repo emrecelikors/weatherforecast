@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,9 @@
 		B7D9916222528C5D00769A57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7D9916022528C5D00769A57 /* LaunchScreen.storyboard */; };
 		B7D9916D22528C5D00769A57 /* Weather_ForecastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9916C22528C5D00769A57 /* Weather_ForecastTests.swift */; };
 		B7D9917822528C5D00769A57 /* Weather_ForecastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9917722528C5D00769A57 /* Weather_ForecastUITests.swift */; };
+		B7DA179A22529BCA000FFA39 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7DA179722529BCA000FFA39 /* Montserrat-Medium.ttf */; };
+		B7DA179B22529BCA000FFA39 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7DA179822529BCA000FFA39 /* Montserrat-Light.ttf */; };
+		B7DA179C22529BCA000FFA39 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7DA179922529BCA000FFA39 /* Montserrat-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		B7D9917322528C5D00769A57 /* Weather ForecastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Weather ForecastUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7D9917722528C5D00769A57 /* Weather_ForecastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather_ForecastUITests.swift; sourceTree = "<group>"; };
 		B7D9917922528C5D00769A57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7DA179722529BCA000FFA39 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		B7DA179822529BCA000FFA39 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		B7DA179922529BCA000FFA39 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		DBA2088819FCC296FA72CAFA /* Pods_Weather_ForecastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_ForecastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C88F46EA492C6B72B28B71 /* Pods_Weather_Forecast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_Forecast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -114,6 +120,7 @@
 		B74329192252901300850915 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B7DA179622529BCA000FFA39 /* Font */,
 				B7D9915E22528C5D00769A57 /* Assets.xcassets */,
 				B7D9915B22528C5D00769A57 /* Main.storyboard */,
 				B7D9916022528C5D00769A57 /* LaunchScreen.storyboard */,
@@ -182,6 +189,16 @@
 			path = "Weather ForecastUITests";
 			sourceTree = "<group>";
 		};
+		B7DA179622529BCA000FFA39 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				B7DA179722529BCA000FFA39 /* Montserrat-Medium.ttf */,
+				B7DA179822529BCA000FFA39 /* Montserrat-Light.ttf */,
+				B7DA179922529BCA000FFA39 /* Montserrat-SemiBold.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		C3B622B0F49F80DA9AC765AD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,7 +209,6 @@
 				37CBF6F9A44BCEFB370FD78C /* Pods-Weather ForecastUITests.debug.xcconfig */,
 				991E5A7FF680957A01D36A0D /* Pods-Weather ForecastUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -314,8 +330,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7DA179C22529BCA000FFA39 /* Montserrat-SemiBold.ttf in Resources */,
+				B7DA179B22529BCA000FFA39 /* Montserrat-Light.ttf in Resources */,
 				B7D9916222528C5D00769A57 /* LaunchScreen.storyboard in Resources */,
 				B7D9915F22528C5D00769A57 /* Assets.xcassets in Resources */,
+				B7DA179A22529BCA000FFA39 /* Montserrat-Medium.ttf in Resources */,
 				B7D9915D22528C5D00769A57 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
