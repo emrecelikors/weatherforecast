@@ -19,6 +19,8 @@
 		B7C2655F22539BC50081688F /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2655E22539BC50081688F /* ViewModelType.swift */; };
 		B7C2656222539C3E0081688F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2656122539C3E0081688F /* BaseViewModel.swift */; };
 		B7C2656622539CE70081688F /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2656522539CE70081688F /* ActivityIndicator.swift */; };
+		B7C265692253E8920081688F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C265682253E8920081688F /* LocationManager.swift */; };
+		B7C2656C2253EA7D0081688F /* RxCoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2656B2253EA7D0081688F /* RxCoreLocation.swift */; };
 		B7D9915822528C5D00769A57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9915722528C5D00769A57 /* AppDelegate.swift */; };
 		B7D9915D22528C5D00769A57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7D9915B22528C5D00769A57 /* Main.storyboard */; };
 		B7D9915F22528C5D00769A57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D9915E22528C5D00769A57 /* Assets.xcassets */; };
@@ -64,6 +66,8 @@
 		B7C2655E22539BC50081688F /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		B7C2656122539C3E0081688F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		B7C2656522539CE70081688F /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		B7C265682253E8920081688F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		B7C2656B2253EA7D0081688F /* RxCoreLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxCoreLocation.swift; sourceTree = "<group>"; };
 		B7D9915422528C5D00769A57 /* Weather Forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather Forecast.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7D9915722528C5D00769A57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7D9915C22528C5D00769A57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,13 +121,6 @@
 				B7C2655222537C9A0081688F /* Weather.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		B743291722528EA400850915 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		B74329192252901300850915 /* Resources */ = {
@@ -207,6 +204,7 @@
 		B7C2656322539CCA0081688F /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				B7C2656A2253EA700081688F /* RxCoreLocation */,
 				B7C2656422539CD50081688F /* RxActivityIndicator */,
 			);
 			path = "Third Party";
@@ -218,6 +216,23 @@
 				B7C2656522539CE70081688F /* ActivityIndicator.swift */,
 			);
 			path = RxActivityIndicator;
+			sourceTree = "<group>";
+		};
+		B7C265672253E8550081688F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B7C2654D225377F20081688F /* Network */,
+				B7C265682253E8920081688F /* LocationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		B7C2656A2253EA700081688F /* RxCoreLocation */ = {
+			isa = PBXGroup;
+			children = (
+				B7C2656B2253EA7D0081688F /* RxCoreLocation.swift */,
+			);
+			path = RxCoreLocation;
 			sourceTree = "<group>";
 		};
 		B7D9914B22528C5D00769A57 = {
@@ -247,14 +262,13 @@
 			children = (
 				B7C2656022539C300081688F /* Base */,
 				B7C26556225390F90081688F /* Enums */,
+				B7C265672253E8550081688F /* Managers */,
 				B743291522528E5E00850915 /* Models */,
-				B7C2654D225377F20081688F /* Network */,
 				B7C2655D22539BB90081688F /* Protocols */,
 				B74329192252901300850915 /* Resources */,
 				B7C2654A2253773A0081688F /* Scenes */,
 				B743291A2252909100850915 /* Supporting Files */,
 				B7C2656322539CCA0081688F /* Third Party */,
-				B743291722528EA400850915 /* ViewModels */,
 			);
 			path = "Weather Forecast";
 			sourceTree = "<group>";
@@ -537,6 +551,7 @@
 				B7C26558225391150081688F /* Endpoint.swift in Sources */,
 				B7C2656222539C3E0081688F /* BaseViewModel.swift in Sources */,
 				B7C2654F225378080081688F /* APIManager.swift in Sources */,
+				B7C265692253E8920081688F /* LocationManager.swift in Sources */,
 				B7C2656622539CE70081688F /* ActivityIndicator.swift in Sources */,
 				B7C2655522538F300081688F /* TodayViewController.swift in Sources */,
 				B7D9915822528C5D00769A57 /* AppDelegate.swift in Sources */,
@@ -544,6 +559,7 @@
 				B7C2655322537C9A0081688F /* Weather.swift in Sources */,
 				B7C2655F22539BC50081688F /* ViewModelType.swift in Sources */,
 				B7C2655C22539B6E0081688F /* TodayViewModel.swift in Sources */,
+				B7C2656C2253EA7D0081688F /* RxCoreLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

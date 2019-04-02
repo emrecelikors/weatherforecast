@@ -5,10 +5,14 @@ target 'Weather Forecast' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Weather Forecast
+  # Networking
   pod 'Alamofire', '4.8.1'
+  
+  # RxSwift
   pod 'RxSwift', '4.4.2'
   pod 'RxCocoa', '4.4.2'
+  
+  # Offline Data
   pod 'RealmSwift', '3.14.0'
 
   target 'Weather ForecastTests' do

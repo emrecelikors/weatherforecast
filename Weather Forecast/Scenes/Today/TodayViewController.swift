@@ -15,6 +15,8 @@ class TodayViewController : UIViewController {
     
     private let bag = DisposeBag()
     
+    @IBOutlet weak var mainLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +27,10 @@ class TodayViewController : UIViewController {
     private func bindViewModel() {
         let inputs = TodayViewModel.Input()
         let outputs = viewModel.transform(input: inputs)
+        
+        outputs.mainTextDriver
+            .drive(mainLabel.rx.text)
+            .disposed(by: bag)
         
     }
 }

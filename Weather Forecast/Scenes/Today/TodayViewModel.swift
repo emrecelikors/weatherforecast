@@ -13,6 +13,9 @@ import RxCocoa
 class TodayViewModel : BaseViewModel, ViewModelType {
     
     private var weather : Observable<WeatherResponse>?
+    private let locationManager = LocationManager.instance
+    
+    private let bag = DisposeBag()
     
     struct Input {
         
@@ -23,7 +26,14 @@ class TodayViewModel : BaseViewModel, ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        weather = APIManager.fetchObject(endpoint: .getTodaysWeather(lat: 4.904202, lon: 52.354685))
+        
+        //Fetches object after reaching coordinates
+        weather = locationManager.location
+            .takeLast(1)
+            .flatMapLatest { (location) -> Observable<WeatherResponse> in
+                return APIManager.fetchObject(endpoint: .getTodaysWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude))
+            }
+        
         
         let mainTextDriver = weather?
             .asObservable()
