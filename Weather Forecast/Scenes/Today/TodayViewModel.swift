@@ -9,13 +9,15 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import CoreLocation
 
 class TodayViewModel : BaseViewModel, ViewModelType {
     
     private let bag = DisposeBag()
     
     struct Input {
-        
+        let location : Observable<CLLocation>
+        let placemark: Observable<[CLPlacemark]>
     }
     
     struct Output {
@@ -30,15 +32,13 @@ class TodayViewModel : BaseViewModel, ViewModelType {
     
     func transform(input: Input) -> Output {
         
-        let locationManager = LocationManager.instance
-        //Fetches object after reaching coordinates
-        let weather = locationManager.location
+        let weather = input.location
             .takeLast(1)
             .flatMapLatest { (location) -> Observable<WeatherResponse> in
                 return APIManager.fetchObject(endpoint: .getTodaysWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude))
             }
         
-        let countryTextDriver = locationManager.placemark
+        let countryTextDriver = input.placemark
             .takeLast(1)
             .map({
                 "\($0.first?.locality ?? ""), \($0.first?.country ?? "")"

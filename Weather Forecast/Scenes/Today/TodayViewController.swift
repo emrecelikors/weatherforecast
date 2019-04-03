@@ -39,7 +39,8 @@ class TodayViewController : UIViewController {
     
     private func bindViewModel() {
         
-        let inputs = TodayViewModel.Input()
+        let locationManager = LocationManager.instance
+        let inputs = TodayViewModel.Input(location: locationManager.location, placemark : locationManager.placemark)
         let outputs = viewModel.transform(input: inputs)
         
         outputs.degreeAndSummaryTextDriver
