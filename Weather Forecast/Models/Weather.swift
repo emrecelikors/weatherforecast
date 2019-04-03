@@ -18,6 +18,7 @@ struct WeatherResponse: Codable {
     let clouds: Clouds
     let dt: Int
     let sys: Sys
+    let rain: Rain?
     let id: Int
     let name: String
     let cod: Int
@@ -41,6 +42,16 @@ struct Main: Codable {
         case tempMin = "temp_min"
         case tempMax = "temp_max"
     }
+}
+
+struct Rain: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case lastHour = "1h"
+        case lastThreeHours = "3h"
+    }
+    
+    let lastHour: Double?
+    let lastThreeHours: Double?
 }
 
 struct Sys: Codable {

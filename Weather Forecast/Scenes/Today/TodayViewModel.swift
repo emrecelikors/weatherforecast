@@ -63,7 +63,7 @@ class TodayViewModel : BaseViewModel, ViewModelType {
         
         let precipitationTextDriver = weather
             .map({ value in
-                return "1.00 mm"
+                return "\(value.rain?.lastHour ?? value.rain?.lastThreeHours ?? 0) mm"
             })
             .asDriver(onErrorJustReturn: "Error occured.")
         

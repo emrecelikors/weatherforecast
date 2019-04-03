@@ -13,10 +13,11 @@ class TodayViewController : UIViewController {
     
     var viewModel = TodayViewModel()
     
-    private let bag = DisposeBag()
-    
     @IBOutlet weak var degreeAndSummaryLabel: UILabel!
     @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    
+    private let bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,10 @@ class TodayViewController : UIViewController {
         
         outputs.countryTextDriver
             .drive(countryLabel.rx.text)
+            .disposed(by: bag)
+        
+        outputs.humidityTextDriver
+            .drive(humidityLabel.rx.text)
             .disposed(by: bag)
         
     }
