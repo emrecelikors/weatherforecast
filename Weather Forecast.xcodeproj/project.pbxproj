@@ -138,7 +138,6 @@
 			children = (
 				B7DA179622529BCA000FFA39 /* Font */,
 				B7D9915E22528C5D00769A57 /* Assets.xcassets */,
-				B7D9915B22528C5D00769A57 /* Main.storyboard */,
 				B7D9916022528C5D00769A57 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -165,6 +164,7 @@
 		B7C2654A2253773A0081688F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				B7D9915B22528C5D00769A57 /* Main.storyboard */,
 				B7C2654B225377510081688F /* Today */,
 				B7C2654C225377550081688F /* Forecast */,
 			);

@@ -34,7 +34,7 @@ class BaseTabBarController: UITabBarController {
     }
     
     func configureChildren() {
-        if let todayViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() {
+        if let todayViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TodayViewController") as? TodayViewController{
             if let tabbarNormalImage = UIImage(named: "TodayInactive"), let tabbarSelectedImage = UIImage(named: "TodayActive") {
                 todayViewController.tabBarItem = UITabBarItem(title: "Today", image: tabbarNormalImage, selectedImage: tabbarSelectedImage)
             }
