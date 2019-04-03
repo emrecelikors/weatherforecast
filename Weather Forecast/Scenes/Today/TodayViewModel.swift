@@ -12,9 +12,6 @@ import RxCocoa
 
 class TodayViewModel : BaseViewModel, ViewModelType {
     
-    private var weather : Observable<WeatherResponse>?
-    private let locationManager = LocationManager.instance
-    
     private let bag = DisposeBag()
     
     struct Input {
@@ -22,28 +19,83 @@ class TodayViewModel : BaseViewModel, ViewModelType {
     }
     
     struct Output {
-        let mainTextDriver : Driver<String>
+        let countryTextDriver : Driver<String>
+        let degreeAndSummaryTextDriver : Driver<String>
+        let humidityTextDriver : Driver<String>
+        let precipitationTextDriver : Driver<String>
+        let pressureTextDriver : Driver<String>
+        let windTextDriver : Driver<String>
+        let windDirectionTextDriver : Driver<String>
     }
     
     func transform(input: Input) -> Output {
         
+        let locationManager = LocationManager.instance
         //Fetches object after reaching coordinates
-        weather = locationManager.location
+        let weather = locationManager.location
             .takeLast(1)
             .flatMapLatest { (location) -> Observable<WeatherResponse> in
                 return APIManager.fetchObject(endpoint: .getTodaysWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude))
             }
         
+        let countryTextDriver = locationManager.placemark
+            .takeLast(1)
+            .map({
+                "\($0.first?.locality ?? ""), \($0.first?.country ?? "")"
+                
+            })
+            .asDriver(onErrorJustReturn: "Country couldn't found")
         
-        let mainTextDriver = weather?
+        let degreeAndSummaryTextDriver = weather
             .asObservable()
             .trackActivity(loading)
             .map({ value in
-                return value.weather.first?.description ?? "No Description"
+                let weather = value.weather.first
+                return "\(Int(value.main.temp))℃ | \(weather?.main ?? "")"
             })
-            .startWith("")
             .asDriver(onErrorJustReturn: "Error occured.")
         
-        return Output(mainTextDriver: mainTextDriver!)
+        let humidityTextDriver = weather
+            .map({ value in
+                return "\(Int(value.main.humidity))%"
+            })
+            .asDriver(onErrorJustReturn: "Error occured.")
+        
+        let precipitationTextDriver = weather
+            .map({ value in
+                return "1.00 mm"
+            })
+            .asDriver(onErrorJustReturn: "Error occured.")
+        
+        let pressureTextDriver = weather
+            .map({ value in
+                return "\(value.main.pressure)"
+            })
+            .asDriver(onErrorJustReturn: "Error occured.")
+        
+        let windTextDriver = weather
+            .map({ value in
+                return "\(Int(value.wind.speed)) km/h"
+            })
+            .asDriver(onErrorJustReturn: "Error occured.")
+        
+        let windDirectionTextDriver = weather
+            .map({ value in
+                return "\(value.wind.deg)"
+            })
+            .asDriver(onErrorJustReturn: "Error occured.")
+        
+        
+        loading.asObservable().subscribe(onNext : {
+            value in print(value.description)
+        }).disposed(by: bag)
+        
+        return Output(countryTextDriver: countryTextDriver
+            , degreeAndSummaryTextDriver: degreeAndSummaryTextDriver
+            , humidityTextDriver: humidityTextDriver
+            , precipitationTextDriver: precipitationTextDriver
+            , pressureTextDriver: pressureTextDriver
+            , windTextDriver: windTextDriver
+            , windDirectionTextDriver: windDirectionTextDriver)
     }
 }

@@ -16,6 +16,7 @@ class LocationManager {
     static let instance = LocationManager()
     private (set) var authorized: Driver<Bool>
     private (set) var location: Observable<CLLocation>
+    private (set) var placemark: Observable<[CLPlacemark]>
     private let locationManager = CLLocationManager()
     
     private init() {
@@ -46,6 +47,11 @@ class LocationManager {
             .take(2)
             .flatMap {
                 return $0.last.map(Driver.just) ?? Driver.empty()
+            }
+        
+        placemark = location
+            .flatMapLatest { (location) -> Observable<[CLPlacemark]> in
+                return CLGeocoder.init().rx.reverseGeocode(location: location)
             }
         
         locationManager.requestWhenInUseAuthorization()

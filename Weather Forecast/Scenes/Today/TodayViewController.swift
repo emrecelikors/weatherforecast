@@ -15,7 +15,8 @@ class TodayViewController : UIViewController {
     
     private let bag = DisposeBag()
     
-    @IBOutlet weak var mainLabel: UILabel!
+    @IBOutlet weak var degreeAndSummaryLabel: UILabel!
+    @IBOutlet weak var countryLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +29,12 @@ class TodayViewController : UIViewController {
         let inputs = TodayViewModel.Input()
         let outputs = viewModel.transform(input: inputs)
         
-        outputs.mainTextDriver
-            .drive(mainLabel.rx.text)
+        outputs.degreeAndSummaryTextDriver
+            .drive(degreeAndSummaryLabel.rx.text)
+            .disposed(by: bag)
+        
+        outputs.countryTextDriver
+            .drive(countryLabel.rx.text)
             .disposed(by: bag)
         
     }

@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Today View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -19,21 +24,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cl2-pZ-9HC">
-                                <rect key="frame" x="150" y="323.5" width="75" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="139" y="258.5" width="97" height="24.5"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="20"/>
+                                <color key="textColor" red="0.18431372549019609" green="0.56862745098039214" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ODU-ni-NrZ" userLabel="Divider">
+                                <rect key="frame" x="117.5" y="333" width="140" height="1"/>
+                                <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="25C-Fw-KLZ"/>
+                                    <constraint firstAttribute="width" constant="140" id="x4g-cV-MLO"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5y-rf-dyW">
+                                <rect key="frame" x="155" y="222.5" width="65.5" height="20"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="16"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ODU-ni-NrZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6Pc-d5-2cG"/>
                             <constraint firstItem="cl2-pZ-9HC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8DE-7D-G0E"/>
-                            <constraint firstItem="cl2-pZ-9HC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="A47-sN-T1D"/>
+                            <constraint firstItem="ODU-ni-NrZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="A72-gr-Wr5"/>
+                            <constraint firstItem="P5y-rf-dyW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HOk-bn-o0E"/>
+                            <constraint firstItem="ODU-ni-NrZ" firstAttribute="top" secondItem="cl2-pZ-9HC" secondAttribute="bottom" constant="50" id="XCX-Es-Rh6"/>
+                            <constraint firstItem="cl2-pZ-9HC" firstAttribute="top" secondItem="P5y-rf-dyW" secondAttribute="bottom" constant="16" id="hG7-Pc-u89"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="mainLabel" destination="cl2-pZ-9HC" id="Hzh-oB-MWh"/>
+                        <outlet property="countryLabel" destination="P5y-rf-dyW" id="LqX-UD-6po"/>
+                        <outlet property="degreeAndSummaryLabel" destination="cl2-pZ-9HC" id="skU-3I-6oy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
