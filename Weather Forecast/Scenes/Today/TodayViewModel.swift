@@ -87,7 +87,7 @@ class TodayViewModel : BaseViewModel, ViewModelType {
         
         
         loading.asObservable().subscribe(onNext : {
-            value in print(value.description)
+            value in print("")
         }).disposed(by: bag)
         
         return Output(countryTextDriver: countryTextDriver

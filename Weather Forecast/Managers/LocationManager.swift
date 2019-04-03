@@ -44,6 +44,7 @@ class LocationManager {
         }
         
         location = locationManager.rx.didUpdateLocations.asObservable()
+            .delay(1, scheduler: MainScheduler.instance)
             .take(2)
             .flatMap {
                 return $0.last.map(Driver.just) ?? Driver.empty()
