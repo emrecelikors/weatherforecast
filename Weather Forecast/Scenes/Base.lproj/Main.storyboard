@@ -38,6 +38,13 @@
                                         <color key="textColor" red="0.18431372549019609" green="0.56862745098039214" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xhg-lx-G2l">
+                                        <rect key="frame" x="137.5" y="43" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="ELI-es-As5"/>
+                                            <constraint firstAttribute="height" constant="100" id="gaa-hi-GRm"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -45,6 +52,8 @@
                                     <constraint firstItem="cl2-pZ-9HC" firstAttribute="centerX" secondItem="ij9-XP-sUp" secondAttribute="centerX" id="7Vk-pg-De6"/>
                                     <constraint firstAttribute="bottom" secondItem="cl2-pZ-9HC" secondAttribute="bottom" constant="40" id="DMv-38-CLn"/>
                                     <constraint firstItem="cl2-pZ-9HC" firstAttribute="top" secondItem="P5y-rf-dyW" secondAttribute="bottom" constant="16" id="PXT-Tm-iuC"/>
+                                    <constraint firstItem="xhg-lx-G2l" firstAttribute="centerX" secondItem="ij9-XP-sUp" secondAttribute="centerX" id="aEH-RE-6Q2"/>
+                                    <constraint firstItem="P5y-rf-dyW" firstAttribute="top" secondItem="xhg-lx-G2l" secondAttribute="bottom" constant="10" id="cmu-fb-qe9"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ODU-ni-NrZ" userLabel="Divider">
@@ -61,8 +70,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ELU-Dq-2J0" userLabel="Summary View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="196.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="04D-lN-dym">
-                                                <rect key="frame" x="77.5" y="2" width="220" height="78.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="04D-lN-dym">
+                                                <rect key="frame" x="67.5" y="2" width="240" height="78.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzQ-kg-KYY">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="78.5"/>
@@ -91,7 +100,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jjo-cU-xAj">
-                                                        <rect key="frame" x="80" y="0.0" width="60" height="78.5"/>
+                                                        <rect key="frame" x="90" y="0.0" width="60" height="78.5"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PrecipitationYellow" translatesAutoresizingMaskIntoConstraints="NO" id="c9O-dv-uYF">
                                                                 <rect key="frame" x="15" y="4" width="30" height="30"/>
@@ -117,7 +126,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAB-rq-NV5">
-                                                        <rect key="frame" x="160" y="0.0" width="60" height="78.5"/>
+                                                        <rect key="frame" x="180" y="0.0" width="60" height="78.5"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PressureYellow" translatesAutoresizingMaskIntoConstraints="NO" id="UFj-PU-5Wg">
                                                                 <rect key="frame" x="15" y="4" width="30" height="30"/>
@@ -144,8 +153,8 @@
                                                     </view>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tKp-VG-niZ">
-                                                <rect key="frame" x="117.5" y="90.5" width="140" height="79"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="tKp-VG-niZ">
+                                                <rect key="frame" x="112.5" y="90.5" width="150" height="79"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NLK-F1-qOe">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="79"/>
@@ -174,7 +183,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPG-pJ-unk">
-                                                        <rect key="frame" x="80" y="0.0" width="60" height="79"/>
+                                                        <rect key="frame" x="90" y="0.0" width="60" height="79"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WindDirectionYellow" translatesAutoresizingMaskIntoConstraints="NO" id="w7o-0T-oKv">
                                                                 <rect key="frame" x="15" y="4" width="30" height="30"/>
@@ -278,6 +287,7 @@
                         <outlet property="countryLabel" destination="P5y-rf-dyW" id="LqX-UD-6po"/>
                         <outlet property="degreeAndSummaryLabel" destination="cl2-pZ-9HC" id="skU-3I-6oy"/>
                         <outlet property="humidityLabel" destination="itL-Xv-Nd3" id="d4x-qt-eog"/>
+                        <outlet property="mainWeatherImageView" destination="xhg-lx-G2l" id="JoO-Jw-9zj"/>
                         <outlet property="precipitationLabel" destination="9Sq-0h-hEv" id="AxM-aw-7EB"/>
                         <outlet property="pressureLabel" destination="Nyq-c8-hb7" id="fJ5-Ug-GQc"/>
                         <outlet property="windDirectionLabel" destination="oyk-ul-izl" id="Bfe-r4-WYL"/>

@@ -64,8 +64,33 @@ struct Sys: Codable {
 }
 
 struct Weather: Codable {
+    
     let id: Int
     let main, description, icon: String
+    
+    func getWeatherImageName(dayTime : DayTime) -> String {
+        var imageName = ""
+        if id >= 200 && id <= 232 {
+            imageName = "Thunderstorm"
+        } else if id >= 521 && id <= 531 {
+            imageName = "ShowerRain"
+        } else if id >= 500 && id <= 531 {
+            imageName = "Rain"
+        } else if id >= 600 && id <= 622 {
+            imageName = "Snow"
+        } else if id == 701 {
+            imageName = "Mist"
+        } else if id == 801 {
+            imageName = "FewClouds"
+        } else if id == 802 {
+            imageName = "ScatteredClouds"
+        } else if id == 803 {
+            imageName = "BrokenClouds"
+        } else {
+            imageName = "ClearSky"
+        }
+        return imageName + dayTime.rawValue
+    }
 }
 
 struct Wind: Codable {

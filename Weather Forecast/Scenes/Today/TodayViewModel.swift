@@ -21,6 +21,7 @@ class TodayViewModel : BaseViewModel, ViewModelType {
     }
     
     struct Output {
+        let weatherImageNameDriver : Driver<String>
         let countryTextDriver : Driver<String>
         let degreeAndSummaryTextDriver : Driver<String>
         let humidityTextDriver : Driver<String>
@@ -61,6 +62,12 @@ class TodayViewModel : BaseViewModel, ViewModelType {
             })
             .asDriver(onErrorJustReturn: "n/a")
         
+        let weatherImageNameDriver = weather
+            .map({ value in
+                return "\(value.weather.first?.getWeatherImageName(dayTime: DayTime()) ?? "")"
+            })
+            .asDriver(onErrorJustReturn: "n/a")
+        
         let precipitationTextDriver = weather
             .map({ value in
                 return "\(value.rain?.lastHour ?? value.rain?.lastThreeHours ?? 0) mm"
@@ -90,7 +97,8 @@ class TodayViewModel : BaseViewModel, ViewModelType {
             value in print("")
         }).disposed(by: bag)
         
-        return Output(countryTextDriver: countryTextDriver
+        return Output(weatherImageNameDriver: weatherImageNameDriver
+            , countryTextDriver: countryTextDriver
             , degreeAndSummaryTextDriver: degreeAndSummaryTextDriver
             , humidityTextDriver: humidityTextDriver
             , precipitationTextDriver: precipitationTextDriver

@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class TodayViewController : UIViewController {
     
@@ -20,6 +21,7 @@ class TodayViewController : UIViewController {
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var windDirectionLabel: UILabel!
+    @IBOutlet weak var mainWeatherImageView: UIImageView!
     
     
     private let bag = DisposeBag()
@@ -42,6 +44,12 @@ class TodayViewController : UIViewController {
         let locationManager = LocationManager.instance
         let inputs = TodayViewModel.Input(location: locationManager.location, placemark : locationManager.placemark)
         let outputs = viewModel.transform(input: inputs)
+        
+        outputs.weatherImageNameDriver
+            .map({
+                UIImage(named: $0)
+            }).drive(mainWeatherImageView.rx.image)
+            .disposed(by: bag)
         
         outputs.degreeAndSummaryTextDriver
             .drive(degreeAndSummaryLabel.rx.text)
