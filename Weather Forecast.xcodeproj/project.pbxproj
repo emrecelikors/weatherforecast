@@ -12,6 +12,9 @@
 		9B4F9AA51554B68FE6790D86 /* Pods_Weather_ForecastUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C565638793469154C566EBF /* Pods_Weather_ForecastUITests.framework */; };
 		B780B0A922549CFA00D10B67 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0A822549CFA00D10B67 /* BaseTabBarController.swift */; };
 		B780B0AC22549D8C00D10B67 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0AB22549D8C00D10B67 /* UIFont+Extension.swift */; };
+		B780B0AE2254AFA100D10B67 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0AD2254AFA100D10B67 /* UIColor+Extension.swift */; };
+		B780B0B02254BE3700D10B67 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0AF2254BE3700D10B67 /* BaseNavigationController.swift */; };
+		B780B0B22254C26C00D10B67 /* WindDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0B12254C26C00D10B67 /* WindDirection.swift */; };
 		B7C2654F225378080081688F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2654E225378080081688F /* APIManager.swift */; };
 		B7C2655322537C9A0081688F /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2655222537C9A0081688F /* Weather.swift */; };
 		B7C2655522538F300081688F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2655422538F300081688F /* TodayViewController.swift */; };
@@ -61,6 +64,9 @@
 		9CBA9FAA16CE03805A410F41 /* Pods-Weather Forecast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather Forecast.release.xcconfig"; path = "Target Support Files/Pods-Weather Forecast/Pods-Weather Forecast.release.xcconfig"; sourceTree = "<group>"; };
 		B780B0A822549CFA00D10B67 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		B780B0AB22549D8C00D10B67 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		B780B0AD2254AFA100D10B67 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		B780B0AF2254BE3700D10B67 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		B780B0B12254C26C00D10B67 /* WindDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindDirection.swift; sourceTree = "<group>"; };
 		B7C2654E225378080081688F /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		B7C2655222537C9A0081688F /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		B7C2655422538F300081688F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				B780B0AB22549D8C00D10B67 /* UIFont+Extension.swift */,
+				B780B0AD2254AFA100D10B67 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -193,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				B7C265592253933D0081688F /* FailureReason.swift */,
+				B780B0B12254C26C00D10B67 /* WindDirection.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -210,6 +218,7 @@
 			children = (
 				B7C2656122539C3E0081688F /* BaseViewModel.swift */,
 				B780B0A822549CFA00D10B67 /* BaseTabBarController.swift */,
+				B780B0AF2254BE3700D10B67 /* BaseNavigationController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -563,14 +572,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B780B0AC22549D8C00D10B67 /* UIFont+Extension.swift in Sources */,
+				B780B0B22254C26C00D10B67 /* WindDirection.swift in Sources */,
 				B7C26558225391150081688F /* Endpoint.swift in Sources */,
 				B7C2656222539C3E0081688F /* BaseViewModel.swift in Sources */,
+				B780B0B02254BE3700D10B67 /* BaseNavigationController.swift in Sources */,
 				B7C2654F225378080081688F /* APIManager.swift in Sources */,
 				B7C265692253E8920081688F /* LocationManager.swift in Sources */,
 				B7C2656622539CE70081688F /* ActivityIndicator.swift in Sources */,
 				B7C2655522538F300081688F /* TodayViewController.swift in Sources */,
 				B7D9915822528C5D00769A57 /* AppDelegate.swift in Sources */,
 				B7C2655A2253933D0081688F /* FailureReason.swift in Sources */,
+				B780B0AE2254AFA100D10B67 /* UIColor+Extension.swift in Sources */,
 				B7C2655322537C9A0081688F /* Weather.swift in Sources */,
 				B780B0A922549CFA00D10B67 /* BaseTabBarController.swift in Sources */,
 				B7C2655F22539BC50081688F /* ViewModelType.swift in Sources */,

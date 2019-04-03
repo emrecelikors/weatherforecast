@@ -30,11 +30,15 @@ struct Clouds: Codable {
 
 struct Coord: Codable {
     let lon, lat: Double
+    init(lat : Double, lon : Double) {
+        self.lon = lon
+        self.lat = lat
+    }
 }
 
 struct Main: Codable {
     let temp: Double
-    let pressure, humidity: Int
+    let pressure, humidity: Double
     let tempMin, tempMax: Double
     
     enum CodingKeys: String, CodingKey {
@@ -56,7 +60,7 @@ struct Rain: Codable {
 
 struct Sys: Codable {
     let message: Double
-    let sunrise, sunset: Int
+    let sunrise, sunset: Double
 }
 
 struct Weather: Codable {

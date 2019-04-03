@@ -16,17 +16,29 @@ class TodayViewController : UIViewController {
     @IBOutlet weak var degreeAndSummaryLabel: UILabel!
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var precipitationLabel: UILabel!
+    @IBOutlet weak var pressureLabel: UILabel!
+    @IBOutlet weak var windLabel: UILabel!
+    @IBOutlet weak var windDirectionLabel: UILabel!
+    
     
     private let bag = DisposeBag()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.bindViewModel()
-        
+        self.configureUI()
     }
     
+    private func configureUI() {
+        self.title = "Today"
+    }
+    
+    
     private func bindViewModel() {
+        
         let inputs = TodayViewModel.Input()
         let outputs = viewModel.transform(input: inputs)
         
@@ -40,6 +52,22 @@ class TodayViewController : UIViewController {
         
         outputs.humidityTextDriver
             .drive(humidityLabel.rx.text)
+            .disposed(by: bag)
+        
+        outputs.precipitationTextDriver
+            .drive(precipitationLabel.rx.text)
+            .disposed(by: bag)
+        
+        outputs.pressureTextDriver
+            .drive(pressureLabel.rx.text)
+            .disposed(by: bag)
+        
+        outputs.windTextDriver
+            .drive(windLabel.rx.text)
+            .disposed(by: bag)
+        
+        outputs.windDirectionTextDriver
+            .drive(windDirectionLabel.rx.text)
             .disposed(by: bag)
         
     }

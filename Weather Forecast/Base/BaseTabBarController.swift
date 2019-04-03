@@ -21,8 +21,8 @@ class BaseTabBarController: UITabBarController {
         tabBar.barTintColor = .white
         
         let normalTitleTextAttributes = [NSAttributedString.Key.font: UIFont.montserratMedium(ofSize: 10.0, style: .Semibold),
-                                         NSAttributedString.Key.foregroundColor: UIColor.darkGray]
-        let selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blue]
+                                         NSAttributedString.Key.foregroundColor: UIColor.weatherDarkGray]
+        let selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.dodgerBlue]
         
         children.forEach { child in
             child.tabBarItem.setTitleTextAttributes(normalTitleTextAttributes,
@@ -35,7 +35,13 @@ class BaseTabBarController: UITabBarController {
     
     func configureChildren() {
         if let todayViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() {
-            viewControllers = [todayViewController,todayViewController]
+            if let tabbarNormalImage = UIImage(named: "TodayInactive"), let tabbarSelectedImage = UIImage(named: "TodayActive") {
+                todayViewController.tabBarItem = UITabBarItem(title: "Today", image: tabbarNormalImage, selectedImage: tabbarSelectedImage)
+            }
+            let todayWithNavigation = BaseNavigationController(rootViewController : todayViewController)
+            viewControllers = [todayWithNavigation]
         }
+        
+        
     }
 }

@@ -59,31 +59,31 @@ class TodayViewModel : BaseViewModel, ViewModelType {
             .map({ value in
                 return "\(Int(value.main.humidity))%"
             })
-            .asDriver(onErrorJustReturn: "Error occured.")
+            .asDriver(onErrorJustReturn: "n/a")
         
         let precipitationTextDriver = weather
             .map({ value in
                 return "\(value.rain?.lastHour ?? value.rain?.lastThreeHours ?? 0) mm"
             })
-            .asDriver(onErrorJustReturn: "Error occured.")
+            .asDriver(onErrorJustReturn: "n/a")
         
         let pressureTextDriver = weather
             .map({ value in
-                return "\(value.main.pressure)"
+                return "\(value.main.pressure) hPa"
             })
-            .asDriver(onErrorJustReturn: "Error occured.")
+            .asDriver(onErrorJustReturn: "n/a")
         
         let windTextDriver = weather
             .map({ value in
                 return "\(Int(value.wind.speed)) km/h"
             })
-            .asDriver(onErrorJustReturn: "Error occured.")
+            .asDriver(onErrorJustReturn: "n/a")
         
         let windDirectionTextDriver = weather
             .map({ value in
-                return "\(value.wind.deg)"
+                return "\(value.wind.deg.direction.description)"
             })
-            .asDriver(onErrorJustReturn: "Error occured.")
+            .asDriver(onErrorJustReturn: "n/a")
         
         
         loading.asObservable().subscribe(onNext : {
