@@ -10,26 +10,26 @@ import Foundation
 import Alamofire
 
 struct WeatherResponse: Codable {
-    let coord: Coord
-    let weather: [Weather]
-    let base: String
-    let main: Main
-    let wind: Wind
-    let clouds: Clouds
-    let dt: Int
-    let sys: Sys
+    let coord: Coord?
+    let weather: [Weather]?
+    let base: String?
+    let main: Main?
+    let wind: Wind?
+    let clouds: Clouds?
+    let dt: Int?
+    let sys: Sys?
     let rain: Rain?
-    let id: Int
-    let name: String
-    let cod: Int
+    let id: Int?
+    let name: String?
+    let cod: Int?
 }
 
 struct Clouds: Codable {
-    let all: Int
+    let all: Int?
 }
 
 struct Coord: Codable {
-    let lon, lat: Double
+    let lon, lat: Double?
     init(lat : Double, lon : Double) {
         self.lon = lon
         self.lat = lat
@@ -37,9 +37,9 @@ struct Coord: Codable {
 }
 
 struct Main: Codable {
-    let temp: Double
-    let pressure, humidity: Double
-    let tempMin, tempMax: Double
+    let temp: Double?
+    let pressure, humidity: Double?
+    let tempMin, tempMax: Double?
     
     enum CodingKeys: String, CodingKey {
         case temp, pressure, humidity
@@ -59,14 +59,14 @@ struct Rain: Codable {
 }
 
 struct Sys: Codable {
-    let message: Double
-    let sunrise, sunset: Double
+    let message: Double?
+    let sunrise, sunset: Double?
 }
 
 struct Weather: Codable {
     
     let id: Int
-    let main, description, icon: String
+    let main, description, icon: String?
     
     func getWeatherImageName(dayTime : DayTime) -> String {
         var imageName = ""
@@ -94,5 +94,5 @@ struct Weather: Codable {
 }
 
 struct Wind: Codable {
-    let speed, deg: Double
+    let speed, deg: Double?
 }

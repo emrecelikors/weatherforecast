@@ -16,8 +16,8 @@ import RxCoreLocation
 class LocationManager {
     
     static let instance = LocationManager()
-    private (set) var location = PublishSubject<CLLocation>()
-    private (set) var placemark = PublishSubject<CLPlacemark>()
+    private (set) var location = ReplaySubject<CLLocation>.createUnbounded()
+    private (set) var placemark = ReplaySubject<CLPlacemark>.createUnbounded()
     private let locationManager = CLLocationManager()
     private let bag = DisposeBag()
     
@@ -29,6 +29,7 @@ class LocationManager {
         locationManager.rx
             .location
             .subscribe(onNext: { [weak self] location in
+                self?.locationManager.stopUpdatingLocation()
                 guard let location = location else { return }
                 self?.location.onNext(location)
             })

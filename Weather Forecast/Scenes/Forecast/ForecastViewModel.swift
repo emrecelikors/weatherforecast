@@ -12,28 +12,40 @@ import RxCocoa
 import CoreLocation
 
 class ForecastViewModel : BaseViewModel, ViewModelType {
+    
+    var forecastResponseSubject = PublishSubject<ForecastResponse>()
+    
     struct Input {
-        let location : PublishSubject<CLLocation>
+        let location : ReplaySubject<CLLocation>
+        let placemark: ReplaySubject<CLPlacemark>
     }
     struct Output {
-        let example : Driver<String>
+        let countryTextDriver : Driver<String>
+        let weatherListDriver : Driver<[WeatherResponse]>
     }
+    
     func transform(input: Input) -> Output {
         
-        let forecastList = input.location
-            .flatMapLatest { (location) -> Observable<WeatherResponse> in
+        input.location
+            .flatMapLatest { (location) -> Observable<ForecastResponse> in
                 return APIManager.fetchObject(endpoint: .getForecast(lat: location.coordinate.latitude, lon: location.coordinate.longitude))
-            }
+            }.subscribe(onNext : { [weak self] value in
+                self?.forecastResponseSubject.onNext(value)
+            }).disposed(by: bag)
         
-        let degreeAndSummaryTextDriver = forecastList
-            .debug()
-            .asObservable()
-            .map({ value in
-                let weather = value
-                return weather.name
+        let countryTextDriver = input.placemark
+            .map({
+                "\($0.locality ?? "")"
             })
-            .asDriver(onErrorJustReturn: "Error occured.")
+            .asDriver(onErrorJustReturn: "No Country Boy")
         
-        return Output(example: degreeAndSummaryTextDriver)
+        let weatherListDriver = forecastResponseSubject.trackActivity(loading)
+            .map({ value in
+                return value.list
+            })
+            .asDriver(onErrorJustReturn: [])
+        
+        
+        return Output(countryTextDriver: countryTextDriver, weatherListDriver: weatherListDriver)
     }
 }

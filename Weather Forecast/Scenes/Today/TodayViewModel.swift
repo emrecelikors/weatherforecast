@@ -16,8 +16,8 @@ class TodayViewModel : BaseViewModel, ViewModelType {
     var weatherResponseSubject = PublishSubject<WeatherResponse>()
     
     struct Input {
-        let location : PublishSubject<CLLocation>
-        let placemark: PublishSubject<CLPlacemark>
+        let location : ReplaySubject<CLLocation>
+        let placemark: ReplaySubject<CLPlacemark>
     }
     
     struct Output {
@@ -49,20 +49,20 @@ class TodayViewModel : BaseViewModel, ViewModelType {
         let degreeAndSummaryTextDriver = weatherResponseSubject
             .trackActivity(loading)
             .map({ value in
-                let weather = value.weather.first
-                return "\(Int(value.main.temp))℃ | \(weather?.main ?? "")"
+                let weather = value.weather?.first
+                return "\(Int(value.main?.temp ?? 0))℃ | \(weather?.main ?? "")"
             })
             .asDriver(onErrorJustReturn: "Error occured.")
         
         let humidityTextDriver = weatherResponseSubject
             .map({ value in
-                return "\(Int(value.main.humidity))%"
+                return "\(Int(value.main?.humidity ?? 0))%"
             })
             .asDriver(onErrorJustReturn: "n/a")
         
         let weatherImageNameDriver = weatherResponseSubject
             .map({ value in
-                return "\(value.weather.first?.getWeatherImageName(dayTime: DayTime()) ?? "")"
+                return "\(value.weather?.first?.getWeatherImageName(dayTime: DayTime()) ?? "")"
             })
             .asDriver(onErrorJustReturn: "n/a")
         
@@ -74,19 +74,19 @@ class TodayViewModel : BaseViewModel, ViewModelType {
         
         let pressureTextDriver = weatherResponseSubject
             .map({ value in
-                return "\(value.main.pressure) hPa"
+                return "\(value.main?.pressure ?? 0) hPa"
             })
             .asDriver(onErrorJustReturn: "n/a")
         
         let windTextDriver = weatherResponseSubject
             .map({ value in
-                return "\(Int(value.wind.speed)) km/h"
+                return "\(Int(value.wind?.speed ?? 0)) km/h"
             })
             .asDriver(onErrorJustReturn: "n/a")
         
         let windDirectionTextDriver = weatherResponseSubject
             .map({ value in
-                return "\(value.wind.deg.direction.description)"
+                return "\(value.wind?.deg?.direction.description ?? "")"
             })
             .asDriver(onErrorJustReturn: "n/a")
         

@@ -7,19 +7,29 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ForecastViewController: UIViewController {
 
     var viewModel = ForecastViewModel()
     
+    private let bag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let output = viewModel.transform(input: ForecastViewModel.Input(location: LocationManager.instance.location))
-        output.example.asObservable()
-            .subscribe(onNext : { value in
-                print("blabla")
-            })
+        
+        self.bindViewModel()
+    }
+    
+    private func bindViewModel() {
+        let locationManager = LocationManager.instance
+        let inputs = ForecastViewModel.Input(location: locationManager.location, placemark : locationManager.placemark)
+        let outputs = viewModel.transform(input: inputs)
+        
+        outputs.countryTextDriver
+            .drive(self.navigationItem.rx.title)
+            .disposed(by: bag)
         
     }
 }
