@@ -13,7 +13,7 @@ import CoreLocation
 
 class ForecastViewModel : BaseViewModel, ViewModelType {
     struct Input {
-        let location : Observable<CLLocation>
+        let location : PublishSubject<CLLocation>
     }
     struct Output {
         let example : Driver<String>
@@ -21,12 +21,12 @@ class ForecastViewModel : BaseViewModel, ViewModelType {
     func transform(input: Input) -> Output {
         
         let forecastList = input.location
-            .take(1)
             .flatMapLatest { (location) -> Observable<WeatherResponse> in
                 return APIManager.fetchObject(endpoint: .getForecast(lat: location.coordinate.latitude, lon: location.coordinate.longitude))
-        }
+            }
         
         let degreeAndSummaryTextDriver = forecastList
+            .debug()
             .asObservable()
             .map({ value in
                 let weather = value

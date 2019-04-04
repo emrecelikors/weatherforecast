@@ -12,7 +12,7 @@ target 'Weather Forecast' do
   pod 'RxSwift', '4.4.2'
   pod 'RxCocoa', '4.4.2'
   pod 'RxDataSources', '~> 3.0'
-  
+  pod 'RxCoreLocation', '1.3.2'
   # Offline Data
   pod 'RealmSwift', '3.14.0'
 

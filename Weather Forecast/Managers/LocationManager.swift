@@ -10,50 +10,37 @@ import Foundation
 import CoreLocation
 import RxSwift
 import RxCocoa
+import RxCoreLocation
+
 
 class LocationManager {
     
     static let instance = LocationManager()
-    private (set) var authorized: Driver<Bool>
-    private (set) var location: Observable<CLLocation>
-    private (set) var placemark: Observable<[CLPlacemark]>
+    private (set) var location = PublishSubject<CLLocation>()
+    private (set) var placemark = PublishSubject<CLPlacemark>()
     private let locationManager = CLLocationManager()
+    private let bag = DisposeBag()
     
     private init() {
         
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         
-        authorized = Observable.deferred { [weak locationManager] in
-            let status = CLLocationManager.authorizationStatus()
-            guard let locationManager = locationManager else {
-                return Observable.just(status)
-            }
-            return locationManager
-                .rx.didChangeAuthorizationStatus
-                .startWith(status)
-            }
-            .asDriver(onErrorJustReturn: CLAuthorizationStatus.notDetermined)
-            .map {
-                switch $0 {
-                case .authorizedWhenInUse:
-                    return true
-                default:
-                    return false
-                }
-        }
+        locationManager.rx
+            .location
+            .subscribe(onNext: { [weak self] location in
+                guard let location = location else { return }
+                self?.location.onNext(location)
+            })
+            .disposed(by: bag)
         
-        location = locationManager.rx.didUpdateLocations.asObservable()
-            .delay(1, scheduler: MainScheduler.instance)
-            .take(2)
-            .flatMap {
-                return $0.last.map(Driver.just) ?? Driver.empty()
-            }
+        locationManager.rx
+            .placemark
+            .subscribe(onNext: { [weak self] placemark in
+                self?.placemark.onNext(placemark)
+            })
+            .disposed(by: bag)
         
-        placemark = location
-            .flatMapLatest { (location) -> Observable<[CLPlacemark]> in
-                return CLGeocoder.init().rx.reverseGeocode(location: location)
-            }
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
