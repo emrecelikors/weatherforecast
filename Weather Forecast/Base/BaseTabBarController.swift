@@ -34,6 +34,8 @@ class BaseTabBarController: UITabBarController {
     }
     
     func configureChildren() {
+        
+        
         if let todayViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TodayViewController") as? TodayViewController{
             if let tabbarNormalImage = UIImage(named: "TodayInactive"), let tabbarSelectedImage = UIImage(named: "TodayActive") {
                 todayViewController.tabBarItem = UITabBarItem(title: "Today", image: tabbarNormalImage, selectedImage: tabbarSelectedImage)
@@ -42,6 +44,12 @@ class BaseTabBarController: UITabBarController {
             viewControllers = [todayWithNavigation]
         }
         
-        
+        if let forecastViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ForecastViewController") as? ForecastViewController{
+            if let tabbarNormalImage = UIImage(named: "ForecastInactive"), let tabbarSelectedImage = UIImage(named: "ForecastActive") {
+                forecastViewController.tabBarItem = UITabBarItem(title: "Forecast", image: tabbarNormalImage, selectedImage: tabbarSelectedImage)
+            }
+            let forecastWithNavigation = BaseNavigationController(rootViewController : forecastViewController)
+            viewControllers?.append(forecastWithNavigation)
+        }
     }
 }

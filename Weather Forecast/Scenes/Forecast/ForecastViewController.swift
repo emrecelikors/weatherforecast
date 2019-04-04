@@ -10,10 +10,16 @@ import UIKit
 
 class ForecastViewController: UIViewController {
 
+    var viewModel = ForecastViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let output = viewModel.transform(input: ForecastViewModel.Input(location: LocationManager.instance.location))
+        output.example.asObservable()
+            .subscribe(onNext : { value in
+                print("blabla")
+            })
+        
     }
 }
