@@ -15,14 +15,14 @@ enum DayTime : String{
 
 extension DayTime {
     
-    init() {
-        let hour = Calendar.current.component(.hour, from: Date())
-        
+    //For deciding is it gonna be day time or night time image
+    init(with hour : Int = Calendar.current.component(.hour, from: Date())) {
         if hour > 6 && hour < 18 {
             self = .Day
         } else {
             self = .Night
         }
     }
+    
     
 }

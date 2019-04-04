@@ -11,6 +11,7 @@ import RxSwift
 
 class BaseViewModel : NSObject {
     
+    internal let bag = DisposeBag()
     let loading = ActivityIndicator()
     
 }

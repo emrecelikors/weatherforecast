@@ -13,8 +13,6 @@ import CoreLocation
 
 class TodayViewModel : BaseViewModel, ViewModelType {
     
-    private let bag = DisposeBag()
-    
     struct Input {
         let location : Observable<CLLocation>
         let placemark: Observable<[CLPlacemark]>
