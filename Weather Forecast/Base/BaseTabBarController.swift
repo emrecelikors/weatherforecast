@@ -20,7 +20,7 @@ class BaseTabBarController: UITabBarController {
     func configureStyle() {
         tabBar.barTintColor = .white
         
-        let normalTitleTextAttributes = [NSAttributedString.Key.font: UIFont.montserratMedium(ofSize: 10.0, style: .Semibold),
+        let normalTitleTextAttributes = [NSAttributedString.Key.font: UIFont.montserrat(ofSize: 10.0, style: .Semibold),
                                          NSAttributedString.Key.foregroundColor: UIColor.weatherDarkGray]
         let selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.dodgerBlue]
         

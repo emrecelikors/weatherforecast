@@ -18,6 +18,8 @@
 		B73DEC622255EC3B0079B2DA /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73DEC612255EC3B0079B2DA /* Forecast.swift */; };
 		B750E47222561F1200BB4B6B /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B750E47122561F1200BB4B6B /* Reusable.swift */; };
 		B750E4742256285900BB4B6B /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B750E4732256285900BB4B6B /* DateManager.swift */; };
+		B767C77B22574F260064B946 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767C77A22574F260064B946 /* UIView+Extension.swift */; };
+		B767C77D225767B50064B946 /* BaseIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767C77C225767B50064B946 /* BaseIndicatorView.swift */; };
 		B780B0A922549CFA00D10B67 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0A822549CFA00D10B67 /* BaseTabBarController.swift */; };
 		B780B0AC22549D8C00D10B67 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0AB22549D8C00D10B67 /* UIFont+Extension.swift */; };
 		B780B0AE2254AFA100D10B67 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0AD2254AFA100D10B67 /* UIColor+Extension.swift */; };
@@ -77,6 +79,8 @@
 		B73DEC612255EC3B0079B2DA /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		B750E47122561F1200BB4B6B /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		B750E4732256285900BB4B6B /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		B767C77A22574F260064B946 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		B767C77C225767B50064B946 /* BaseIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseIndicatorView.swift; sourceTree = "<group>"; };
 		B780B0A822549CFA00D10B67 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		B780B0AB22549D8C00D10B67 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		B780B0AD2254AFA100D10B67 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 			children = (
 				B780B0AB22549D8C00D10B67 /* UIFont+Extension.swift */,
 				B780B0AD2254AFA100D10B67 /* UIColor+Extension.swift */,
+				B767C77A22574F260064B946 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				B7C2656122539C3E0081688F /* BaseViewModel.swift */,
 				B780B0A822549CFA00D10B67 /* BaseTabBarController.swift */,
 				B780B0AF2254BE3700D10B67 /* BaseNavigationController.swift */,
+				B767C77C225767B50064B946 /* BaseIndicatorView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -591,6 +597,7 @@
 				B73DEC602255EA740079B2DA /* ForecastViewModel.swift in Sources */,
 				B750E4742256285900BB4B6B /* DateManager.swift in Sources */,
 				B7C2656222539C3E0081688F /* BaseViewModel.swift in Sources */,
+				B767C77D225767B50064B946 /* BaseIndicatorView.swift in Sources */,
 				B780B0B02254BE3700D10B67 /* BaseNavigationController.swift in Sources */,
 				B7C2654F225378080081688F /* APIManager.swift in Sources */,
 				B7C265692253E8920081688F /* LocationManager.swift in Sources */,
@@ -607,6 +614,7 @@
 				B7C2655C22539B6E0081688F /* TodayViewModel.swift in Sources */,
 				B735A3292257161B003174D2 /* ForecastHeaderTableViewCell.swift in Sources */,
 				B73DEC622255EC3B0079B2DA /* Forecast.swift in Sources */,
+				B767C77B22574F260064B946 /* UIView+Extension.swift in Sources */,
 				B73DEC5C2255E5DC0079B2DA /* ForecastViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -784,6 +792,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 865D8JKSQ9;
 				INFOPLIST_FILE = "$(SRCROOT)/Weather Forecast/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -803,6 +812,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 865D8JKSQ9;
 				INFOPLIST_FILE = "$(SRCROOT)/Weather Forecast/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

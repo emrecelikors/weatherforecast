@@ -22,7 +22,9 @@ class TodayViewController : UIViewController {
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var windDirectionLabel: UILabel!
     @IBOutlet weak var mainWeatherImageView: UIImageView!
+    @IBOutlet weak var upperView: UIView!
     
+    var shareText = "Share Description"
     
     private let bag = DisposeBag()
     
@@ -38,12 +40,29 @@ class TodayViewController : UIViewController {
         self.title = "Today"
     }
     
+    @IBAction func shareAction() {
+        let image = self.upperView.takeScreenshot()
+        guard let countryText = countryLabel.text else {
+            return
+        }
+        let shareText = "Hey, check out weather of \(countryText)" as AnyObject
+        let activityItem: [AnyObject] = [image, shareText]
+        let avc = UIActivityViewController(activityItems: activityItem as [AnyObject], applicationActivities: nil)
+        self.present(avc, animated: true, completion: nil)
+    }
     
     private func bindViewModel() {
         
         let locationManager = LocationManager.instance
         let inputs = TodayViewModel.Input(location: locationManager.location, placemark : locationManager.placemark)
         let outputs = viewModel.transform(input: inputs)
+        
+        outputs.loadingDriver
+            .map({
+                return !$0
+            })
+            .drive(BaseIndicatorView.instance.indicatorView.rx.isHidden)
+            .disposed(by: bag)
         
         outputs.weatherImageNameDriver
             .map({

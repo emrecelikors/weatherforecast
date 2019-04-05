@@ -28,6 +28,7 @@ class LocationManager {
         
         locationManager.rx
             .location
+            .take(1)
             .subscribe(onNext: { [weak self] location in
                 self?.locationManager.stopUpdatingLocation()
                 guard let location = location else { return }

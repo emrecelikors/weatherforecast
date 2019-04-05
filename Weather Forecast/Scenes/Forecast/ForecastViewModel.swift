@@ -21,6 +21,7 @@ class ForecastViewModel : BaseViewModel, ViewModelType {
         let placemark: ReplaySubject<CLPlacemark>
     }
     struct Output {
+        let loadingDriver : Driver<Bool>
         let countryTextDriver : Driver<String>
         let weatherDataSourceDriver : Driver<[SectionModel<String, WeatherResponse>]>
     }
@@ -29,7 +30,7 @@ class ForecastViewModel : BaseViewModel, ViewModelType {
         
         input.location
             .flatMapLatest { (location) -> Observable<ForecastResponse> in
-                return APIManager.fetchObject(endpoint: .getForecast(lat: location.coordinate.latitude, lon: location.coordinate.longitude))
+                return APIManager.fetchObject(endpoint: .getForecast(lat: location.coordinate.latitude, lon: location.coordinate.longitude)).trackActivity(self.loading)
             }.subscribe(onNext : { [weak self] value in
                 self?.forecastResponseSubject.onNext(value)
             }).disposed(by: bag)
@@ -42,7 +43,6 @@ class ForecastViewModel : BaseViewModel, ViewModelType {
         
         
         let weatherDataSourceDriver = forecastResponseSubject
-            .trackActivity(loading)
             .map({ value  -> ([SectionModel<String, WeatherResponse>]) in
                 
                 let array = Dictionary(grouping: value.list, by: {value in
@@ -56,7 +56,10 @@ class ForecastViewModel : BaseViewModel, ViewModelType {
                 return array
             }).asDriver(onErrorJustReturn: [])
         
+        let loadingDriver = loading.asDriver()
         
-        return Output(countryTextDriver: countryTextDriver, weatherDataSourceDriver: weatherDataSourceDriver)
+        return Output(loadingDriver : loadingDriver
+            , countryTextDriver: countryTextDriver
+            , weatherDataSourceDriver: weatherDataSourceDriver)
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIFont {
-    class func montserratMedium(ofSize size: CGFloat , style : MontserratStyle = .Medium ) -> UIFont {
+    class func montserrat(ofSize size: CGFloat , style : MontserratStyle = .Medium ) -> UIFont {
         return UIFont(name: "Montserrat-\(style.rawValue)", size: size) ?? UIFont.systemFont(ofSize: size)
     }
 }

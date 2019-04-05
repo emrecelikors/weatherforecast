@@ -21,14 +21,23 @@ class ForecastViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 90.0
+        
         self.bindViewModel()
+        self.configureUI()
     }
     
     private func bindViewModel() {
+        
         let locationManager = LocationManager.instance
         let inputs = ForecastViewModel.Input(location: locationManager.location, placemark : locationManager.placemark)
         let outputs = viewModel.transform(input: inputs)
+        
+        outputs.loadingDriver
+            .map({
+                return !$0
+            })
+            .drive(BaseIndicatorView.instance.indicatorView.rx.isHidden)
+            .disposed(by: bag)
         
         outputs.countryTextDriver
             .drive(self.navigationItem.rx.title)
@@ -43,7 +52,10 @@ class ForecastViewController: UIViewController {
             .disposed(by: bag)
     }
     
-    
+    private func configureUI() {
+        tableView.allowsSelection = false
+        tableView.rowHeight = 90.0
+    }
     
 }
 

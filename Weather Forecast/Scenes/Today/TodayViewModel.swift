@@ -21,6 +21,7 @@ class TodayViewModel : BaseViewModel, ViewModelType {
     }
     
     struct Output {
+        let loadingDriver : Driver<Bool>
         let weatherImageNameDriver : Driver<String>
         let countryTextDriver : Driver<String>
         let degreeAndSummaryTextDriver : Driver<String>
@@ -35,8 +36,9 @@ class TodayViewModel : BaseViewModel, ViewModelType {
         
         input.location
             .flatMapLatest { (location) -> Observable<WeatherResponse> in
-                return APIManager.fetchObject(endpoint: .getTodaysWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude))
-            }.subscribe(onNext : { [weak self] value in
+                return APIManager.fetchObject(endpoint: .getTodaysWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude)).trackActivity(self.loading)
+            }
+            .subscribe(onNext : { [weak self] value in
                 self?.weatherResponseSubject.onNext(value)
             }).disposed(by: bag)
         
@@ -47,7 +49,6 @@ class TodayViewModel : BaseViewModel, ViewModelType {
             .asDriver(onErrorJustReturn: "Country couldn't found")
         
         let degreeAndSummaryTextDriver = weatherResponseSubject
-            .trackActivity(loading)
             .map({ value in
                 let weather = value.weather?.first
                 return "\(Int(value.main?.temp ?? 0))℃ | \(weather?.description?.capitalized ?? "")"
@@ -90,12 +91,10 @@ class TodayViewModel : BaseViewModel, ViewModelType {
             })
             .asDriver(onErrorJustReturn: "n/a")
         
+        let loadingDriver = loading.asDriver()
         
-        loading.asObservable().subscribe(onNext : {
-            value in print("")
-        }).disposed(by: bag)
-        
-        return Output(weatherImageNameDriver: weatherImageNameDriver
+        return Output(loadingDriver : loadingDriver
+            , weatherImageNameDriver: weatherImageNameDriver
             , countryTextDriver: countryTextDriver
             , degreeAndSummaryTextDriver: degreeAndSummaryTextDriver
             , humidityTextDriver: humidityTextDriver

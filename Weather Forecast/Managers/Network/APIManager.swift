@@ -14,7 +14,6 @@ final class APIManager {
     
     static func fetchObject<T: Decodable>(endpoint : Endpoint) -> Observable<T> {
         return Observable.create { observer -> Disposable in
-            print(endpoint.urlString)
             Alamofire.request(endpoint.urlString)
                 .validate()
                 .responseJSON { response in

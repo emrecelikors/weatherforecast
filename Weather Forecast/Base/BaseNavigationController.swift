@@ -18,7 +18,7 @@ class BaseNavigationController: UINavigationController {
             self.navigationBar.shadowImage = shadowImage
         }
         
-        let titleTextAttributes = [NSAttributedString.Key.font: UIFont.montserratMedium(ofSize: 16.0, style: .Medium),
+        let titleTextAttributes = [NSAttributedString.Key.font: UIFont.montserrat(ofSize: 16.0, style: .Medium),
                                    NSAttributedString.Key.foregroundColor: UIColor.weatherDarkGray]
         navigationBar.titleTextAttributes = titleTextAttributes
     }

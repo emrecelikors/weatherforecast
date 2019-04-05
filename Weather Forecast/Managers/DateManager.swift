@@ -27,6 +27,10 @@ class DateManager {
     func timeIntervalToReadableDayString(interval : Double) -> String {
         let date = Date(timeIntervalSince1970: interval)
         dateFormatter.dateFormat = "EEEE"
-        return dateFormatter.string(from: date)
+        let dateString = dateFormatter.string(from: date)
+        if dateString == dateFormatter.string(from: Date()) {
+            return "Today"
+        }
+        return dateString
     }
 }
