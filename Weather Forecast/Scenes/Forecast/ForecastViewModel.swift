@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxDataSources
 import CoreLocation
 
 class ForecastViewModel : BaseViewModel, ViewModelType {
@@ -21,7 +22,7 @@ class ForecastViewModel : BaseViewModel, ViewModelType {
     }
     struct Output {
         let countryTextDriver : Driver<String>
-        let weatherListDriver : Driver<[WeatherResponse]>
+        let weatherDataSourceDriver : Driver<[SectionModel<String, WeatherResponse>]>
     }
     
     func transform(input: Input) -> Output {
@@ -39,13 +40,23 @@ class ForecastViewModel : BaseViewModel, ViewModelType {
             })
             .asDriver(onErrorJustReturn: "No Country Boy")
         
-        let weatherListDriver = forecastResponseSubject.trackActivity(loading)
-            .map({ value in
-                return value.list
-            })
-            .asDriver(onErrorJustReturn: [])
+        
+        let weatherDataSourceDriver = forecastResponseSubject
+            .trackActivity(loading)
+            .map({ value  -> ([SectionModel<String, WeatherResponse>]) in
+                
+                let array = Dictionary(grouping: value.list, by: {value in
+                    value.dayString
+                }).map({
+                    return SectionModel(model: $0.key, items: $0.value)
+                }).sorted(by: { (sectionModel1, sectionModel2) -> Bool in
+                    return (sectionModel1.items.first?.dt ?? 0.0 < sectionModel2.items.first?.dt ?? 0.0)
+                })
+                
+                return array
+            }).asDriver(onErrorJustReturn: [])
         
         
-        return Output(countryTextDriver: countryTextDriver, weatherListDriver: weatherListDriver)
+        return Output(countryTextDriver: countryTextDriver, weatherDataSourceDriver: weatherDataSourceDriver)
     }
 }

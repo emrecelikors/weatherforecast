@@ -9,16 +9,19 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 class ForecastViewController: UIViewController {
 
     var viewModel = ForecastViewModel()
+    let dataSource = ForecastViewController.dataSource()
     
+    @IBOutlet weak var tableView: UITableView!
     private let bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.rowHeight = 90.0
         self.bindViewModel()
     }
     
@@ -31,5 +34,45 @@ class ForecastViewController: UIViewController {
             .drive(self.navigationItem.rx.title)
             .disposed(by: bag)
         
+        outputs.weatherDataSourceDriver
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: bag)
+        
+        tableView
+            .rx.setDelegate(self)
+            .disposed(by: bag)
+    }
+    
+    
+    
+}
+
+extension ForecastViewController {
+    static func dataSource() -> RxTableViewSectionedReloadDataSource<SectionModel<String, WeatherResponse>> {
+        
+        return RxTableViewSectionedReloadDataSource<SectionModel<String, WeatherResponse>>(
+            configureCell: { (dataSource, table, idxPath, item) in
+                guard let cell: ForecastTableViewCell = table.dequeueReusableCell(withIdentifier: ForecastTableViewCell.reuseID, for: idxPath) as? ForecastTableViewCell else {
+                    return UITableViewCell()
+                }
+                cell.bind(item)
+                return cell
+        })
+        
+    }
+}
+
+extension ForecastViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerCell = tableView.dequeueReusableCell(withIdentifier: ForecastHeaderTableViewCell.reuseID) as? ForecastHeaderTableViewCell else {
+            return UIView()
+        }
+        headerCell.bind(dataSource[section].items.first!)
+        return headerCell
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45.0
     }
 }

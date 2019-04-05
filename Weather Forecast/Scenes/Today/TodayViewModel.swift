@@ -50,7 +50,7 @@ class TodayViewModel : BaseViewModel, ViewModelType {
             .trackActivity(loading)
             .map({ value in
                 let weather = value.weather?.first
-                return "\(Int(value.main?.temp ?? 0))℃ | \(weather?.main ?? "")"
+                return "\(Int(value.main?.temp ?? 0))℃ | \(weather?.description?.capitalized ?? "")"
             })
             .asDriver(onErrorJustReturn: "Error occured.")
         
@@ -62,7 +62,7 @@ class TodayViewModel : BaseViewModel, ViewModelType {
         
         let weatherImageNameDriver = weatherResponseSubject
             .map({ value in
-                return "\(value.weather?.first?.getWeatherImageName(dayTime: DayTime()) ?? "")"
+                return "\(value.weather?.first?.getWeatherImageName() ?? "")"
             })
             .asDriver(onErrorJustReturn: "n/a")
         
@@ -74,7 +74,7 @@ class TodayViewModel : BaseViewModel, ViewModelType {
         
         let pressureTextDriver = weatherResponseSubject
             .map({ value in
-                return "\(value.main?.pressure ?? 0) hPa"
+                return "\(Int(value.main?.pressure ?? 0)) hPa"
             })
             .asDriver(onErrorJustReturn: "n/a")
         

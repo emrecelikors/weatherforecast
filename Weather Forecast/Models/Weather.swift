@@ -8,25 +8,41 @@
 
 import Foundation
 import Alamofire
+import RxDataSources
 
 struct WeatherResponse: Codable {
-    let coord: Coord?
     let weather: [Weather]?
-    let base: String?
     let main: Main?
     let wind: Wind?
-    let clouds: Clouds?
-    let dt: Int?
-    let sys: Sys?
     let rain: Rain?
-    let id: Int?
-    let name: String?
-    let cod: Int?
+    var dt: Double?
+    
+    //For smooth scrolling ; it's calculated when model initialized
+    var dateString : String?
+    var imageNameString : String?
+    var dayString : String
+    
+    enum CodingKeys: String, CodingKey {
+        case weather = "weather"
+        case main = "main"
+        case wind = "wind"
+        case rain = "rain"
+        case dt = "dt"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        weather = try container.decodeIfPresent([Weather].self, forKey: .weather)
+        main = try container.decodeIfPresent(Main.self, forKey: .main)
+        wind = try container.decodeIfPresent(Wind.self, forKey: .wind)
+        rain = try container.decodeIfPresent(Rain.self, forKey: .rain)
+        dt = try container.decodeIfPresent(Double.self, forKey: .dt)
+        dateString = DateManager.instance.timeIntervalToHourString(interval: dt ?? 0.0)
+        imageNameString = "\(weather?.first?.getWeatherImageName() ?? "")"
+        dayString = DateManager.instance.timeIntervalToReadableDayString(interval: dt ?? 0.0)
+    }
 }
 
-struct Clouds: Codable {
-    let all: Int?
-}
 
 struct Coord: Codable {
     let lon, lat: Double?
@@ -58,17 +74,14 @@ struct Rain: Codable {
     let lastThreeHours: Double?
 }
 
-struct Sys: Codable {
-    let message: Double?
-    let sunrise, sunset: Double?
-}
-
 struct Weather: Codable {
     
     let id: Int
     let main, description, icon: String?
+    var detailedWeather : String?
     
-    func getWeatherImageName(dayTime : DayTime) -> String {
+    func getWeatherImageName() -> String {
+        
         var imageName = ""
         if id >= 200 && id <= 232 {
             imageName = "Thunderstorm"
@@ -89,7 +102,13 @@ struct Weather: Codable {
         } else {
             imageName = "ClearSky"
         }
-        return imageName + dayTime.rawValue
+        
+        if icon?.last == "d" {
+            return imageName + "Day"
+        } else {
+            return imageName + "Night"
+        }
+        
     }
 }
 
