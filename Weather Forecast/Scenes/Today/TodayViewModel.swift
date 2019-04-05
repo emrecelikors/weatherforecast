@@ -35,6 +35,7 @@ class TodayViewModel : BaseViewModel, ViewModelType {
     func transform(input: Input) -> Output {
         
         input.location
+            .takeLast(1)
             .flatMapLatest { (location) -> Observable<WeatherResponse> in
                 return APIManager.fetchObject(endpoint: .getTodaysWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude)).trackActivity(self.loading)
             }

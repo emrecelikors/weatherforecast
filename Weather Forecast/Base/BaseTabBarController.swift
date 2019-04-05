@@ -7,14 +7,24 @@
 //
 
 import UIKit
+import RxSwift
 
 class BaseTabBarController: UITabBarController {
+    
+    let bag = DisposeBag()
+    var appDelegate: AppDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureChildren()
         configureStyle()
+        configureRx()
+    }
+    
+    func configureRx() {
+        
+        
     }
     
     func configureStyle() {

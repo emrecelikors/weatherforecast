@@ -20,6 +20,8 @@
 		B750E4742256285900BB4B6B /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B750E4732256285900BB4B6B /* DateManager.swift */; };
 		B767C77B22574F260064B946 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767C77A22574F260064B946 /* UIView+Extension.swift */; };
 		B767C77D225767B50064B946 /* BaseIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767C77C225767B50064B946 /* BaseIndicatorView.swift */; };
+		B767C7812257783F0064B946 /* PermissionErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767C77F2257783F0064B946 /* PermissionErrorViewController.swift */; };
+		B767C7822257783F0064B946 /* PermissionErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B767C7802257783F0064B946 /* PermissionErrorViewController.xib */; };
 		B780B0A922549CFA00D10B67 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0A822549CFA00D10B67 /* BaseTabBarController.swift */; };
 		B780B0AC22549D8C00D10B67 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0AB22549D8C00D10B67 /* UIFont+Extension.swift */; };
 		B780B0AE2254AFA100D10B67 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0AD2254AFA100D10B67 /* UIColor+Extension.swift */; };
@@ -81,6 +83,8 @@
 		B750E4732256285900BB4B6B /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		B767C77A22574F260064B946 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		B767C77C225767B50064B946 /* BaseIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseIndicatorView.swift; sourceTree = "<group>"; };
+		B767C77F2257783F0064B946 /* PermissionErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionErrorViewController.swift; sourceTree = "<group>"; };
+		B767C7802257783F0064B946 /* PermissionErrorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionErrorViewController.xib; sourceTree = "<group>"; };
 		B780B0A822549CFA00D10B67 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		B780B0AB22549D8C00D10B67 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		B780B0AD2254AFA100D10B67 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -171,6 +175,15 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B767C77E225778210064B946 /* LocationPermission */ = {
+			isa = PBXGroup;
+			children = (
+				B767C77F2257783F0064B946 /* PermissionErrorViewController.swift */,
+				B767C7802257783F0064B946 /* PermissionErrorViewController.xib */,
+			);
+			path = LocationPermission;
+			sourceTree = "<group>";
+		};
 		B780B0AA22549D5700D10B67 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +197,7 @@
 		B7C2654A2253773A0081688F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				B767C77E225778210064B946 /* LocationPermission */,
 				B7D9915B22528C5D00769A57 /* Main.storyboard */,
 				B7C2654C225377550081688F /* Forecast */,
 				B7C2654B225377510081688F /* Today */,
@@ -479,6 +493,7 @@
 				B7D9916222528C5D00769A57 /* LaunchScreen.storyboard in Resources */,
 				B7D9915F22528C5D00769A57 /* Assets.xcassets in Resources */,
 				B7DA179A22529BCA000FFA39 /* Montserrat-Medium.ttf in Resources */,
+				B767C7822257783F0064B946 /* PermissionErrorViewController.xib in Resources */,
 				B7D9915D22528C5D00769A57 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,6 +631,7 @@
 				B73DEC622255EC3B0079B2DA /* Forecast.swift in Sources */,
 				B767C77B22574F260064B946 /* UIView+Extension.swift in Sources */,
 				B73DEC5C2255E5DC0079B2DA /* ForecastViewController.swift in Sources */,
+				B767C7812257783F0064B946 /* PermissionErrorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
