@@ -30,18 +30,24 @@ class TodayViewModel : BaseViewModel, ViewModelType {
         let pressureTextDriver : Driver<String>
         let windTextDriver : Driver<String>
         let windDirectionTextDriver : Driver<String>
+        let errorSubject : ReplaySubject<String>
     }
     
     func transform(input: Input) -> Output {
         
+        let errorSubject = ReplaySubject<String>.createUnbounded()
+        
         input.location
             .takeLast(1)
             .flatMapLatest { (location) -> Observable<WeatherResponse> in
-                return APIManager.fetchObject(endpoint: .getTodaysWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude)).trackActivity(self.loading)
+                return APIManager.instance.fetchObject(endpoint: .getTodaysWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude)).trackActivity(self.loading)
             }
             .subscribe(onNext : { [weak self] value in
                 self?.weatherResponseSubject.onNext(value)
+                }, onError : { error in
+                errorSubject.onNext(error.localizedDescription)
             }).disposed(by: bag)
+        
         
         let countryTextDriver = input.placemark
             .map({
@@ -94,6 +100,8 @@ class TodayViewModel : BaseViewModel, ViewModelType {
         
         let loadingDriver = loading.asDriver()
         
+        
+        
         return Output(loadingDriver : loadingDriver
             , weatherImageNameDriver: weatherImageNameDriver
             , countryTextDriver: countryTextDriver
@@ -102,6 +110,7 @@ class TodayViewModel : BaseViewModel, ViewModelType {
             , precipitationTextDriver: precipitationTextDriver
             , pressureTextDriver: pressureTextDriver
             , windTextDriver: windTextDriver
-            , windDirectionTextDriver: windDirectionTextDriver)
+            , windDirectionTextDriver: windDirectionTextDriver
+            , errorSubject: errorSubject)
     }
 }

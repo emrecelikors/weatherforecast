@@ -24,7 +24,6 @@ class TodayViewController : UIViewController {
     @IBOutlet weak var mainWeatherImageView: UIImageView!
     @IBOutlet weak var upperView: UIView!
     
-    var shareText = "Share Description"
     
     private let bag = DisposeBag()
     
@@ -97,6 +96,12 @@ class TodayViewController : UIViewController {
         outputs.windDirectionTextDriver
             .drive(windDirectionLabel.rx.text)
             .disposed(by: bag)
+        
+        outputs.errorSubject
+            .subscribe { (string) in
+                let message = "\(string.element ?? "Ops") But app will show offline data if exist."
+                self.alert(message: message, title: "Ops")
+            }.disposed(by: bag)
         
     }
 }

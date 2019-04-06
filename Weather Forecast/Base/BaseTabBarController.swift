@@ -16,16 +16,10 @@ class BaseTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureChildren()
         configureStyle()
-        configureRx()
     }
     
-    func configureRx() {
-        
-        
-    }
     
     func configureStyle() {
         tabBar.barTintColor = .white

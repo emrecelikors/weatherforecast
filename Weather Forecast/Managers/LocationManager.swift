@@ -27,8 +27,6 @@ class LocationManager {
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         
-        
-        
         locationManager.rx
             .didChangeAuthorization
             .subscribe(onNext: { [weak self] _, status in
@@ -54,6 +52,7 @@ class LocationManager {
         
         locationManager.rx
             .placemark
+            .debug()
             .subscribe(onNext: { [weak self] placemark in
                 self?.placemark.onNext(placemark)
             })

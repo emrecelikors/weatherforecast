@@ -22,6 +22,10 @@
 		B767C77D225767B50064B946 /* BaseIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767C77C225767B50064B946 /* BaseIndicatorView.swift */; };
 		B767C7812257783F0064B946 /* PermissionErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767C77F2257783F0064B946 /* PermissionErrorViewController.swift */; };
 		B767C7822257783F0064B946 /* PermissionErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B767C7802257783F0064B946 /* PermissionErrorViewController.xib */; };
+		B767C784225784300064B946 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767C783225784300064B946 /* RealmManager.swift */; };
+		B767C7862257A5800064B946 /* OfflineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767C7852257A5800064B946 /* OfflineData.swift */; };
+		B767C78922587BFE0064B946 /* FailureReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767C78822587BFE0064B946 /* FailureReason.swift */; };
+		B767C78B2258892D0064B946 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767C78A2258892D0064B946 /* UIViewController+Extension.swift */; };
 		B780B0A922549CFA00D10B67 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0A822549CFA00D10B67 /* BaseTabBarController.swift */; };
 		B780B0AC22549D8C00D10B67 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0AB22549D8C00D10B67 /* UIFont+Extension.swift */; };
 		B780B0AE2254AFA100D10B67 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780B0AD2254AFA100D10B67 /* UIColor+Extension.swift */; };
@@ -31,7 +35,6 @@
 		B7C2655322537C9A0081688F /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2655222537C9A0081688F /* Weather.swift */; };
 		B7C2655522538F300081688F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2655422538F300081688F /* TodayViewController.swift */; };
 		B7C26558225391150081688F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C26557225391150081688F /* Endpoint.swift */; };
-		B7C2655A2253933D0081688F /* FailureReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C265592253933D0081688F /* FailureReason.swift */; };
 		B7C2655C22539B6E0081688F /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2655B22539B6E0081688F /* TodayViewModel.swift */; };
 		B7C2655F22539BC50081688F /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2655E22539BC50081688F /* ViewModelType.swift */; };
 		B7C2656222539C3E0081688F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2656122539C3E0081688F /* BaseViewModel.swift */; };
@@ -85,6 +88,10 @@
 		B767C77C225767B50064B946 /* BaseIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseIndicatorView.swift; sourceTree = "<group>"; };
 		B767C77F2257783F0064B946 /* PermissionErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionErrorViewController.swift; sourceTree = "<group>"; };
 		B767C7802257783F0064B946 /* PermissionErrorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionErrorViewController.xib; sourceTree = "<group>"; };
+		B767C783225784300064B946 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		B767C7852257A5800064B946 /* OfflineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineData.swift; sourceTree = "<group>"; };
+		B767C78822587BFE0064B946 /* FailureReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureReason.swift; sourceTree = "<group>"; };
+		B767C78A2258892D0064B946 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		B780B0A822549CFA00D10B67 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		B780B0AB22549D8C00D10B67 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		B780B0AD2254AFA100D10B67 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -94,7 +101,6 @@
 		B7C2655222537C9A0081688F /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		B7C2655422538F300081688F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		B7C26557225391150081688F /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		B7C265592253933D0081688F /* FailureReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureReason.swift; sourceTree = "<group>"; };
 		B7C2655B22539B6E0081688F /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		B7C2655E22539BC50081688F /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		B7C2656122539C3E0081688F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
@@ -152,6 +158,7 @@
 			children = (
 				B7C2655222537C9A0081688F /* Weather.swift */,
 				B73DEC612255EC3B0079B2DA /* Forecast.swift */,
+				B767C7852257A5800064B946 /* OfflineData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -190,6 +197,7 @@
 				B780B0AB22549D8C00D10B67 /* UIFont+Extension.swift */,
 				B780B0AD2254AFA100D10B67 /* UIColor+Extension.swift */,
 				B767C77A22574F260064B946 /* UIView+Extension.swift */,
+				B767C78A2258892D0064B946 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -237,9 +245,9 @@
 		B7C26556225390F90081688F /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				B7C265592253933D0081688F /* FailureReason.swift */,
 				B780B0B12254C26C00D10B67 /* WindDirection.swift */,
 				B73DEC562255383B0079B2DA /* DayTime.swift */,
+				B767C78822587BFE0064B946 /* FailureReason.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -286,6 +294,7 @@
 				B7C2654D225377F20081688F /* Network */,
 				B7C265682253E8920081688F /* LocationManager.swift */,
 				B750E4732256285900BB4B6B /* DateManager.swift */,
+				B767C783225784300064B946 /* RealmManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -610,8 +619,11 @@
 				B750E47222561F1200BB4B6B /* Reusable.swift in Sources */,
 				B7C26558225391150081688F /* Endpoint.swift in Sources */,
 				B73DEC602255EA740079B2DA /* ForecastViewModel.swift in Sources */,
+				B767C7862257A5800064B946 /* OfflineData.swift in Sources */,
+				B767C784225784300064B946 /* RealmManager.swift in Sources */,
 				B750E4742256285900BB4B6B /* DateManager.swift in Sources */,
 				B7C2656222539C3E0081688F /* BaseViewModel.swift in Sources */,
+				B767C78922587BFE0064B946 /* FailureReason.swift in Sources */,
 				B767C77D225767B50064B946 /* BaseIndicatorView.swift in Sources */,
 				B780B0B02254BE3700D10B67 /* BaseNavigationController.swift in Sources */,
 				B7C2654F225378080081688F /* APIManager.swift in Sources */,
@@ -619,8 +631,8 @@
 				B7C2656622539CE70081688F /* ActivityIndicator.swift in Sources */,
 				B7C2655522538F300081688F /* TodayViewController.swift in Sources */,
 				B7D9915822528C5D00769A57 /* AppDelegate.swift in Sources */,
-				B7C2655A2253933D0081688F /* FailureReason.swift in Sources */,
 				B73DEC572255383B0079B2DA /* DayTime.swift in Sources */,
+				B767C78B2258892D0064B946 /* UIViewController+Extension.swift in Sources */,
 				B780B0AE2254AFA100D10B67 /* UIColor+Extension.swift in Sources */,
 				B7C2655322537C9A0081688F /* Weather.swift in Sources */,
 				B780B0A922549CFA00D10B67 /* BaseTabBarController.swift in Sources */,

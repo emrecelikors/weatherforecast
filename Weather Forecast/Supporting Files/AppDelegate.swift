@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         LocationManager.instance.authorized
-            .debug()
             .subscribe(onNext : { [weak self] value in
                 if value {
                     self?.window?.rootViewController = BaseTabBarController()
@@ -31,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }).disposed(by: bag)
         
-        window?.rootViewController = BaseTabBarController()
+        //It can be splash view
+        window?.rootViewController = UIViewController()
         
         return true
     }

@@ -30,7 +30,7 @@ class ForecastViewModel : BaseViewModel, ViewModelType {
         
         input.location
             .flatMapLatest { (location) -> Observable<ForecastResponse> in
-                return APIManager.fetchObject(endpoint: .getForecast(lat: location.coordinate.latitude, lon: location.coordinate.longitude)).trackActivity(self.loading)
+                return APIManager.instance.fetchObject(endpoint: .getForecast(lat: location.coordinate.latitude, lon: location.coordinate.longitude)).trackActivity(self.loading)
             }.subscribe(onNext : { [weak self] value in
                 self?.forecastResponseSubject.onNext(value)
             }).disposed(by: bag)

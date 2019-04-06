@@ -16,6 +16,7 @@ struct WeatherResponse: Codable {
     let wind: Wind?
     let rain: Rain?
     var dt: Double?
+    var name: String?
     
     //For smooth scrolling ; it's calculated when model initialized
     var dateString : String?
@@ -28,10 +29,12 @@ struct WeatherResponse: Codable {
         case wind = "wind"
         case rain = "rain"
         case dt = "dt"
+        case name = "name"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decodeIfPresent(String.self, forKey: .name)
         weather = try container.decodeIfPresent([Weather].self, forKey: .weather)
         main = try container.decodeIfPresent(Main.self, forKey: .main)
         wind = try container.decodeIfPresent(Wind.self, forKey: .wind)

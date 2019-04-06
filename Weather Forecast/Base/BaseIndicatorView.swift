@@ -15,10 +15,7 @@ class BaseIndicatorView {
     var indicatorView = UIView(frame: CGRect.zero)
     
     private init() {
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
+        if let topController = UIApplication.shared.keyWindow?.rootViewController {
             
             
             topController.view.addSubview(indicatorView)

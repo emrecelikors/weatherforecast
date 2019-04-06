@@ -12,7 +12,9 @@ import Alamofire
 
 final class APIManager {
     
-    static func fetchObject<T: Decodable>(endpoint : Endpoint) -> Observable<T> {
+    static let instance = APIManager()
+    
+    func fetchObject<T: Decodable>(endpoint : Endpoint) -> Observable<T> {
         return Observable.create { observer -> Disposable in
             Alamofire.request(endpoint.urlString)
                 .validate()
@@ -24,24 +26,38 @@ final class APIManager {
                             return
                         }
                         do {
-                            let friends = try JSONDecoder().decode(T.self, from: data)
-                            observer.onNext(friends)
+                            let result = try JSONDecoder().decode(T.self, from: data)
+                            observer.onNext(result)
                             observer.onCompleted()
+                            self.saveDataToRealm(data: data, endpoint: endpoint)
                         } catch {
                             observer.onError(error)
                         }
                     case .failure(let error):
-                        if let statusCode = response.response?.statusCode,
-                            let reason = FailureReason(rawValue: statusCode)
-                        {
-                            observer.onError(reason)
+                        //It gets offline data and it shows error
+                        if let offlineData = OfflineData.getOfflineData(primaryKey: endpoint.path) {
+                            do {
+                                let result = try JSONDecoder().decode(T.self, from: offlineData.lastSucceedData)
+                                observer.onNext(result)
+                            } catch {
+                                
+                            }
                         }
                         observer.onError(error)
+                        
                     }
             }
             
             return Disposables.create()
         }
+    }
+    
+    private func saveDataToRealm(data : Data, endpoint : Endpoint) {
+        let offlineData = OfflineData()
+        let _ = RealmManager.instance.defaultRealm
+        offlineData.screenKey = endpoint.path
+        offlineData.lastSucceedData = data
+        try! offlineData.save()
     }
     
 }
