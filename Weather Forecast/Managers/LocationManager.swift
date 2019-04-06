@@ -52,7 +52,6 @@ class LocationManager {
         
         locationManager.rx
             .placemark
-            .debug()
             .subscribe(onNext: { [weak self] placemark in
                 self?.placemark.onNext(placemark)
             })
