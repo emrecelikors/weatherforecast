@@ -13,7 +13,7 @@ import CoreLocation
 
 class TodayViewModel : BaseViewModel, ViewModelType {
     
-    var weatherResponseSubject = PublishSubject<WeatherResponse>()
+    private var weatherResponseSubject = PublishSubject<WeatherResponse>()
     
     struct Input {
         let location : ReplaySubject<CLLocation>

@@ -15,6 +15,7 @@ struct WeatherResponse: Codable {
     let main: Main?
     let wind: Wind?
     let rain: Rain?
+    let coord: Coord?
     var dt: Double?
     var name: String?
     
@@ -30,6 +31,7 @@ struct WeatherResponse: Codable {
         case rain = "rain"
         case dt = "dt"
         case name = "name"
+        case coord = "coord"
     }
     
     init(from decoder: Decoder) throws {
@@ -39,6 +41,7 @@ struct WeatherResponse: Codable {
         main = try container.decodeIfPresent(Main.self, forKey: .main)
         wind = try container.decodeIfPresent(Wind.self, forKey: .wind)
         rain = try container.decodeIfPresent(Rain.self, forKey: .rain)
+        coord = try container.decodeIfPresent(Coord.self, forKey: .coord)
         dt = try container.decodeIfPresent(Double.self, forKey: .dt)
         dateString = DateManager.instance.timeIntervalToHourString(interval: dt ?? 0.0)
         imageNameString = "\(weather?.first?.getWeatherImageName() ?? "")"

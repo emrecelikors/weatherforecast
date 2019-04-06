@@ -14,7 +14,7 @@ import CoreLocation
 
 class ForecastViewModel : BaseViewModel, ViewModelType {
     
-    var forecastResponseSubject = PublishSubject<ForecastResponse>()
+    private var forecastResponseSubject = PublishSubject<ForecastResponse>()
     
     struct Input {
         let location : ReplaySubject<CLLocation>

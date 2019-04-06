@@ -39,17 +39,6 @@ class TodayViewController : UIViewController {
         self.title = "Today"
     }
     
-    @IBAction func shareAction() {
-        let image = self.upperView.takeScreenshot()
-        guard let countryText = countryLabel.text else {
-            return
-        }
-        let shareText = "Hey, check out weather of \(countryText)" as AnyObject
-        let activityItem: [AnyObject] = [image, shareText]
-        let avc = UIActivityViewController(activityItems: activityItem as [AnyObject], applicationActivities: nil)
-        self.present(avc, animated: true, completion: nil)
-    }
-    
     private func bindViewModel() {
         
         let locationManager = LocationManager.instance
@@ -104,4 +93,16 @@ class TodayViewController : UIViewController {
             }.disposed(by: bag)
         
     }
+    
+    @IBAction func shareAction() {
+        let image = self.upperView.takeScreenshot()
+        guard let countryText = countryLabel.text else {
+            return
+        }
+        let shareText = "Hey, check out weather of \(countryText)" as AnyObject
+        let activityItem: [AnyObject] = [image, shareText]
+        let avc = UIActivityViewController(activityItems: activityItem as [AnyObject], applicationActivities: nil)
+        self.present(avc, animated: true, completion: nil)
+    }
+    
 }
